@@ -5,7 +5,8 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.create(username: "John",password: "test")
+User.create(username: "John", password: "test")
+User.create(username: "Dave", password: "test")
 Post.create(
 [
     {
@@ -21,6 +22,13 @@ Post.create(
         "body": "body of the second post",
         "category": "news",
         "user_id": 1,
+    },
+    {
+        "id": 3,
+        "title": "3rd post-Dave",
+        "body": "body of the Dave's first post",
+        "category": "gaming",
+        "user_id": 2,
     }
 ]
 )

@@ -4,13 +4,15 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all #if want only posts from user: Post.where user: @user.id
-
+    @posts = Post.joins(:user).select("posts.* , users.username").where("posts.user_id = users.id")
+    #if want only posts from user: Post.where user: @user.id
     render json: @posts
   end
 
   # GET /posts/1
   def show
+    # used to be @post
+    @post = Post.joins(:user).select("posts.* , users.username").where("posts.user_id = users.id").find(params[:id])
     render json: @post
   end
 
