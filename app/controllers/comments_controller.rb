@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show update destroy ]
+  before_action :get_post
   before_action :authorized
 
   # GET /comments
   def index
-    @comments = Comment.all
+    @comments = @post.comments
 
     render json: @comments
   end
@@ -17,7 +18,7 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @post.comments.new(comment_params)
 
     if @comment.save
       render json: @comment, status: :created, location: @comment
@@ -43,11 +44,15 @@ class CommentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
-      @comment = Comment.find(params[:id])
+      @comment = @post.comments.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def comment_params
       params.require(:comment).permit(:body, :post_id, :user_id)
+    end
+
+    def get_post
+      @post = Post.find(params[:id])
     end
 end
