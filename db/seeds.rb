@@ -32,3 +32,29 @@ Post.create(
     }
 ]
 )
+Comment.create([
+    {
+        "id": 1,
+        "body": "first comment to the first post - John",
+        "user_id":1,
+        "post_id":1,
+    },
+    {
+        "id": 2,
+        "body": "second comment to the first post by dave",
+        "user_id":2,
+        "post_id":1,
+    },
+    {
+        "id": 3,
+        "body": "1st comment to the second post - Dave",
+        "user_id":2,
+        "post_id":2,
+    },
+    {
+        "id": 4,
+        "body": "first comment to the 3rd post - John",
+        "user_id":1,
+        "post_id":3,
+    }
+])
