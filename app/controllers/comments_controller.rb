@@ -1,18 +1,18 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[ show update destroy ]
   before_action :get_post
+  before_action :set_comment, only: %i[ show update destroy ]
   before_action :authorized
 
   # GET /comments
   def index
-    @comments = @post.comments
+    @comments = @post.comments.joins(:user).select("comments.* , users.username").where("comments.user_id = users.id")
 
     render json: @comments
   end
 
-  # GET /comments/1
+  # GET /comments/1 #### currently : /posts/post_id/comments/comment_id where comment_id is unique eg p/2/c/3 exists but p/2/c/1 doesn't
   def show
-    @comments
+    @comment = @post.comments.joins(:user).select("comments.* , users.username").where("comments.user_id = users.id").find(params[:id])
     render json: @comment
   end
 
