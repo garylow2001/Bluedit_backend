@@ -42,10 +42,6 @@ class PostsController < ApplicationController
     @post.destroy
   end
 
-  def showcomments
-    @post.comments
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
