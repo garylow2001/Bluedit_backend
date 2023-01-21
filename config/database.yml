@@ -89,8 +89,4 @@ test:
 #
 production:
   <<: *default
-  database: forum_backend_production
-  username: test
-  password: test
-  host: localhost
-  port: 5432
+  url: <%= ENV["MY_APP_DATABASE_URL"] %>
